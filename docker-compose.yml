@@ -1,0 +1,21 @@
+---
+version: "3.9"
+services:
+  loopback4-ts-api:
+    image: loopback4-ts-api:dont_push
+    container_name: loopback4_ts_api
+    hostname: loopback4_ts_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - local_backend
+    environment:
+      - VIRTUAL_HOST=loopback4-ts-api.local
+      - VIRTUAL_PORT=3000
+    expose:
+      - "3000"
+networks:
+  local_backend:
+    external: true
+    name: local_backend
